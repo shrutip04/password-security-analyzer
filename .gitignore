@@ -1,0 +1,14 @@
+﻿### IDEs ###
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+
+### macOS/OS junk ###
+.DS_Store
+
+### Frontend (Node) - added now, used once frontend/ exists ###
+frontend/node_modules/
+frontend/dist/
+frontend/.env
