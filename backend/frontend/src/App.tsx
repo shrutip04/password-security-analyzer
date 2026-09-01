@@ -3,19 +3,21 @@ import AuthForm from "./components/AuthForm";
 import PasswordAnalyzer from "./components/PasswordAnalyzer";
 import PasswordGenerator from "./components/PasswordGenerator";
 import SecurityEducation from "./components/SecurityEducation";
+import Dashboard from "./components/Dashboard";
 
-type Tab = "analyzer" | "generator" | "education";
+type Tab = "dashboard" | "analyzer" | "generator" | "education";
 
 export default function App() {
     const [token, setToken] = useState<string | null>(null);
     const [email, setEmail] = useState<string | null>(null);
-    const [tab, setTab] = useState<Tab>("analyzer");
+    const [tab, setTab] = useState<Tab>("dashboard");
 
     if (!token) {
         return <AuthForm onAuth={(t, e) => { setToken(t); setEmail(e); }} />;
     }
 
     const tabs: { key: Tab; label: string }[] = [
+        { key: "dashboard", label: "Dashboard" },
         { key: "analyzer", label: "Analyzer" },
         { key: "generator", label: "Generator" },
         { key: "education", label: "Learn" },
@@ -42,6 +44,7 @@ export default function App() {
                     </button>
                 </div>
             </div>
+            {tab === "dashboard" && <Dashboard token={token} onNavigate={setTab} />}
             {tab === "analyzer" && <PasswordAnalyzer />}
             {tab === "generator" && <PasswordGenerator />}
             {tab === "education" && <SecurityEducation token={token} />}
